@@ -1,0 +1,536 @@
+/* ===== KALYAN MANTAP — South Indian Wedding Booking Platform ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
+
+/* ===== CSS Custom Properties ===== */
+:root {
+  /* Silk Maroon — primary */
+  --maroon-900: #3a0a13;
+  --maroon-800: #5e101e;
+  --maroon-700: #741528;
+  --maroon: #8B1A2B;
+  --maroon-500: #a82040;
+  --maroon-400: #c7385a;
+  --maroon-300: #d96b87;
+  --maroon-200: #e99db0;
+  --maroon-100: #f4cbd5;
+  --maroon-50: #fcedf0;
+
+  /* Temple Gold — accent */
+  --gold-900: #5a4200;
+  --gold-800: #876300;
+  --gold-700: #a67a00;
+  --gold: #C5961A;
+  --gold-500: #d4a832;
+  --gold-400: #dfba54;
+  --gold-300: #e9cd7f;
+  --gold-200: #f2deaa;
+  --gold-100: #f8eed4;
+  --gold-50: #fdf8eb;
+
+  /* Banana Leaf Green — secondary accent */
+  --leaf-900: #1a3d2c;
+  --leaf-800: #1e4d36;
+  --leaf: #2D6A4F;
+  --leaf-400: #52866e;
+  --leaf-300: #7aab96;
+  --leaf-200: #a5ccba;
+  --leaf-100: #d2e8dd;
+  --leaf-50: #edf6f1;
+
+  /* Sandalwood Neutrals */
+  --sand: #FFF8EC;
+  --sand-dark: #F5EBD8;
+  --ivory: #FFFDF5;
+  --warm-900: #1c1814;
+  --warm-800: #2e2822;
+  --warm-700: #413930;
+  --warm-600: #554b40;
+  --warm-500: #6e6256;
+  --warm-400: #8d7f72;
+  --warm-300: #b3a798;
+  --warm-200: #d4cbbe;
+  --warm-100: #eae4db;
+  --warm-50: #f5f1eb;
+
+  /* Semantic */
+  --success: #2D6A4F;
+  --success-light: #edf6f1;
+  --warning: #d4a832;
+  --warning-light: #fdf8eb;
+  --error: #c7385a;
+  --error-light: #fcedf0;
+  --info: #3a7cc8;
+  --info-light: #e8f0fa;
+
+  /* Calendar */
+  --available: #2D6A4F;
+  --booked: #c7385a;
+  --selected: var(--gold);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout */
+  --max-width: 1280px;
+  --navbar-height: 68px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-gold: 0 4px 20px rgba(197, 150, 26, 0.15);
+
+  /* Transitions */
+  --ease-fast: 150ms ease;
+  --ease-base: 250ms ease;
+  --ease-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Page */
+  --bg-page: var(--sand);
+  --bg-card: #ffffff;
+  --text-primary: var(--warm-900);
+  --text-secondary: var(--warm-600);
+  --text-muted: var(--warm-400);
+  --border-color: var(--warm-100);
+}
+
+/* ===== Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block
+}
+
+ul,
+ol {
+  list-style: none
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit
+}
+
+/* ===== Typography ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary)
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem)
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem)
+}
+
+h3 {
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem)
+}
+
+h4 {
+  font-size: 1.15rem
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7
+}
+
+/* ===== Layout ===== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px
+}
+
+.section {
+  padding: 72px 0
+}
+
+.section-sm {
+  padding: 40px 0
+}
+
+/* ===== Buttons ===== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 26px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.01em;
+  transition: all var(--ease-base);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97)
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--maroon), var(--maroon-700));
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(139, 26, 43, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 26, 43, 0.35)
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-700));
+  color: var(--warm-900);
+  box-shadow: 0 4px 14px rgba(197, 150, 26, 0.25);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(197, 150, 26, 0.35)
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--maroon);
+  color: var(--maroon)
+}
+
+.btn-outline:hover {
+  background: var(--maroon);
+  color: #fff;
+  transform: translateY(-2px)
+}
+
+.btn-leaf {
+  background: var(--leaf);
+  color: #fff
+}
+
+.btn-leaf:hover {
+  background: var(--leaf-800);
+  transform: translateY(-2px)
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 8px 16px
+}
+
+.btn-ghost:hover {
+  color: var(--maroon);
+  background: var(--maroon-50)
+}
+
+.btn-sm {
+  padding: 8px 18px;
+  font-size: 0.82rem
+}
+
+.btn-lg {
+  padding: 14px 32px;
+  font-size: 1rem
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all var(--ease-slow);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-3px);
+  border-color: var(--gold-200)
+}
+
+/* ===== Badges ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-gold {
+  background: var(--gold-100);
+  color: var(--gold-900)
+}
+
+.badge-success {
+  background: var(--success-light);
+  color: var(--success)
+}
+
+.badge-maroon {
+  background: var(--maroon-50);
+  color: var(--maroon)
+}
+
+/* ===== Inputs ===== */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px
+}
+
+.input-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary)
+}
+
+.input,
+.select {
+  padding: 11px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  background: #fff;
+  color: var(--text-primary);
+  transition: border-color var(--ease-base), box-shadow var(--ease-base);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--maroon-300);
+  box-shadow: 0 0 0 4px rgba(139, 26, 43, 0.06)
+}
+
+.input::placeholder {
+  color: var(--warm-300)
+}
+
+/* ===== Tags ===== */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 13px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 500;
+  background: var(--warm-50);
+  color: var(--warm-600);
+  border: 1px solid var(--warm-100);
+}
+
+/* ===== Divider ===== */
+.divider {
+  height: 1px;
+  background: var(--border-color);
+  border: none;
+  margin: 20px 0
+}
+
+/* ===== Gradient text ===== */
+.gradient-text {
+  background: linear-gradient(135deg, var(--maroon), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92)
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-6px)
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0
+  }
+
+  100% {
+    background-position: 200% 0
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease both
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.35s ease both
+}
+
+.delay-1 {
+  animation-delay: .1s
+}
+
+.delay-2 {
+  animation-delay: .2s
+}
+
+.delay-3 {
+  animation-delay: .3s
+}
+
+.delay-4 {
+  animation-delay: .4s
+}
+
+/* ===== Stars ===== */
+.stars {
+  color: var(--gold)
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 7px
+}
+
+::-webkit-scrollbar-track {
+  background: var(--warm-50)
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--warm-300);
+  border-radius: 4px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--warm-400)
+}
+
+/* ===== Responsive ===== */
+@media(max-width:768px) {
+  .container {
+    padding: 0 16px
+  }
+
+  .section {
+    padding: 48px 0
+  }
+
+  .section-sm {
+    padding: 28px 0
+  }
+
+  .btn-lg {
+    padding: 12px 26px;
+    font-size: 0.92rem
+  }
+}
+
+@media(max-width:480px) {
+  .container {
+    padding: 0 12px
+  }
+}
